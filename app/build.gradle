@@ -12,13 +12,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86','x86_64'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.king.turman.talkme",
+                JPUSH_PKGNAME: "com.king.turman.talkme",
                 JPUSH_APPKEY : "3c7106cc2b27e3e56170be0b",
-                JPUSH_CHANNEL : "talkme",
+                JPUSH_CHANNEL: "talkme",
         ]
     }
     buildTypes {

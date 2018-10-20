@@ -8,7 +8,8 @@ public class AppCurrentStatus {
      * Jpush alias sat
      */
     private boolean isJPushAliasSet;
-    private String jPushAlias;
+    private String jPushAlias; //极光别名
+    private String jPushTag;  //极光标签
 
     private AppCurrentStatus() {
 
@@ -36,5 +37,13 @@ public class AppCurrentStatus {
 
     public void setjPushAlias(String jPushAlias) {
         this.jPushAlias = jPushAlias;
+    }
+
+    public String getjPushTag() {
+        return jPushTag;
+    }
+
+    public void setjPushTag(String jPushTag) {
+        this.jPushTag = jPushTag;
     }
 }
