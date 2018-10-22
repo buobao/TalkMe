@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TalkMe.iml" filepath="$PROJECT_DIR$/.idea/TalkMe.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TalkMe.iml" filepath="$PROJECT_DIR$/TalkMe.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\TalkMe\TalkMe.iml" filepath="D:\TalkMe\TalkMe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,13 +1,110 @@
 package com.king.turman.talkme;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
-public class MainActivity extends AppCompatActivity {
+import com.king.turman.talkme.viewbeans.TaskBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseActivity {
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerView;
+    private MainListAdapter mainListAdapter;
+
+    private List<TaskBean> taskBeans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
+        recyclerView = findViewById(R.id.recycler_list);
+
+        initListView();
+    }
+
+    private void initListView() {
+        taskBeans = new ArrayList<>();
+        taskBeans.add(new TaskBean());
+        taskBeans.add(new TaskBean());
+        mainListAdapter = new MainListAdapter(taskBeans);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mainListAdapter);
+
+        swipeRefreshLayout.setRefreshing(true);
+
+        swipeRefreshLayout.postDelayed(() -> {
+            // TODO: 2018/10/22 拉取数据
+            swipeRefreshLayout.setRefreshing(false);
+            TaskBean bean = new TaskBean();
+            bean.setSender("buobao");
+            taskBeans.add(0,bean);
+            LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(this, R.anim.layout_animation_fall_down);
+            recyclerView.setLayoutAnimation(controller);
+            mainListAdapter.notifyItemRangeChanged(0,1);
+            recyclerView.scheduleLayoutAnimation();
+        }, 3000);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.appColor));
+
+
+
+        //下拉刷新
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            AppUtil.showToast("setOnRefreshListener",this);
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        //加载动画
+
+
+    }
+
+    @Override
+    public String setTag() {
+        return MainActivity.class.getName();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
