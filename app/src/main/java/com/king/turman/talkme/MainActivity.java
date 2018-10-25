@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
+import com.king.turman.talkme.database.DatabaseUtil;
 import com.king.turman.talkme.viewbeans.TaskBean;
 
 import java.util.ArrayList;
@@ -29,6 +30,20 @@ public class MainActivity extends BaseActivity {
         recyclerView = findViewById(R.id.recycler_list);
 
         initListView();
+
+        TaskBean bean1 = new TaskBean();
+        bean1.setSender("buobao");
+        bean1.setReceivers(new ArrayList(){
+            {
+                add("MMMMMMM");
+                add("NNNNNNN");
+                add("OOOOOOO");
+            }
+        });
+        DatabaseUtil.getInstance(this).insertTask(bean1);
+        TaskBean bean2 = new TaskBean();
+        DatabaseUtil.getInstance(this).queryTask(bean2);
+        AppUtil.showToast(bean2.getSender(),this);
     }
 
     private void initListView() {
