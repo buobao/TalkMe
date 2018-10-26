@@ -1,11 +1,13 @@
 package com.king.turman.talkme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.webkit.WebView;
 
 import com.king.turman.talkme.database.DatabaseUtil;
 import com.king.turman.talkme.viewbeans.TaskBean;
@@ -69,6 +71,9 @@ public class MainActivity extends BaseActivity {
             recyclerView.setLayoutAnimation(controller);
             mainListAdapter.notifyItemRangeChanged(0,1);
             recyclerView.scheduleLayoutAnimation();
+
+//            Intent intent = new Intent(this, WebActivity.class);
+//            startActivity(intent);
         }, 3000);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.appColor));
 
