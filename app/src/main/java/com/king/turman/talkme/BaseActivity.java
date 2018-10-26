@@ -12,6 +12,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //permission tags
     protected static final int REQUEST_PHONE_STATUS_PERMISSION = 1;  //手机状态权限
+    protected static final int REQUEST_PHONE_AUDIO_PERMISSION = 2;  //录音权限
+    protected static final int REQUEST_PHONE_READ_FILE_PERMISSION = 3;  //文件读取权限
 
     private PermissionAction currentAction;  //当前权限请求行为
 
@@ -37,19 +39,26 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_PHONE_STATUS_PERMISSION: //手机状态
-                if (permissions.length != 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    //失败
+
+        if (permissions.length != 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            //失败
+            switch (requestCode) {
+                case REQUEST_PHONE_STATUS_PERMISSION: //手机状态
                     AppUtil.showToast("请允许获取手机状态权限后再试", this);
-                } else {
-                    //成功
-                    if (currentAction != null) {
-                        currentAction.action();
-                        currentAction = null;
-                    }
-                }
-                break;
+                    break;
+                case REQUEST_PHONE_AUDIO_PERMISSION: //录音
+                    AppUtil.showToast("请允许获取手机录音权限后再试", this);
+                    break;
+                case REQUEST_PHONE_READ_FILE_PERMISSION:
+                    AppUtil.showToast("请允许读取手机文件权限后再试", this);
+                    break;
+            }
+        } else {
+            //成功
+            if (currentAction != null) {
+                currentAction.action();
+                currentAction = null;
+            }
         }
     }
 

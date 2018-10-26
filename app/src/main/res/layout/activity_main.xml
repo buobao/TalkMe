@@ -22,4 +22,14 @@
 
 
 
+    <ImageView
+        android:id="@+id/recorder"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_recorder_sel"/>
+
 </RelativeLayout>
